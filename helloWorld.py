@@ -1,18 +1,11 @@
 from flask import Flask
 
-# import logging
 import boto3
-import random
-
 import time
-
-# from botocore.exceptions import ClientError
 
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return uploadImageToS3()
-def uploadImageToS3():
     s3_client = boto3.client('s3')
     bucket_name = 'flash-images-store'
     time_num = str(int(time.time()))
