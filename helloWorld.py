@@ -17,6 +17,7 @@ def index():
     except Exception as e:
         print(e)
         return "CAMERA ERROR"
+
 def take_picture():
     from picamera import PiCamera
 
@@ -32,6 +33,7 @@ def take_picture():
 
     print file_name
     return file_name
+
 def send_picture_to_s3(file_name):
     s3_client = boto3.client('s3')
     bucket_name = 'flash-images-store'
