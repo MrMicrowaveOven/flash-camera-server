@@ -15,7 +15,7 @@ def index():
         file_name = take_picture()
         return send_picture_to_s3(file_name)
     except Exception as e:
-        print e
+        print(e)
         return "CAMERA ERROR"
 def take_picture():
     from picamera import PiCamera
