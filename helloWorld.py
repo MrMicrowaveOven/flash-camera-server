@@ -11,9 +11,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    file_name = take_picture()
-    return send_picture_to_s3(file_name)
-
+    try:
+        file_name = take_picture()
+        return send_picture_to_s3(file_name)
+    except Exception:
+        print Exception
 def take_picture():
     from picamera import PiCamera
 
