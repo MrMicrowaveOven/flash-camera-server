@@ -55,23 +55,11 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 
 `python helloWorld.py`
 
-### Make a new Reserved NGROK subdomain
+### Add the new Camera to the database, with the tunnel_url.
 
-https://dashboard.ngrok.com/reserved
-
-### Install NGROK
-
-ngrok.com/
-
-Unzipping is really all you need to do
-
-Run the authorization as noted in the instructions.
-
-### Run NGROK
+### Add to crontab, so the Server and Serveo start on Boot
 
 ```
-cd ~/Downloads
-./ngrok http 8080 -subdomain={reserved_ngrok_subdomain}
+@reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/helloWorld.py >/home/pi/serverlog 2>&1)
+@reboot (/bin/sleep 25; ssh -o ServerAliveInterval=30 -tt -R flash-chateau:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
 ```
-
-### Get another number on Twilio.  Add a new Camera to the database, with the phone_number and tunnel_url.
