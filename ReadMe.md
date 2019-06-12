@@ -25,6 +25,7 @@ Requires reboot.
 
 * Global
 * Preferences
+* Raspberry Pi Configuration
 * Interfaces
 * Camera
 
@@ -36,6 +37,7 @@ Requires reboot.
 
 ### Clone the repo
 
+`cd ~/Desktop`
 `git clone https://github.com/MrMicrowaveOven/flash-camera-server.git`
 
 ### Add AWS Credentials
@@ -51,15 +53,15 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 
 `pip install boto3`
 
-### Initiate the server
+### Initiate the server to test
 
 `python helloWorld.py`
-
-### Add the new Camera to the database, with the tunnel_url.
 
 ### No need to install Serveo, since it's fucking awesome, but run the following to enable bypassing security protocols:
 
 `ssh -o ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net`
+
+### Add the new Camera to the database, with the tunnel_url.  Make note of the ID.
 
 ### Add to crontab, so the Server and Serveo start on Boot
 
@@ -71,3 +73,18 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 ### Test!
 
 `sudo reboot` to see if it all works!
+
+### Add WiFi credentials
+
+`sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+You'll see these:
+
+```
+network={
+    ssid="testing"
+    psk="testingPassword"
+}
+```
+
+Add the necessary network credentials, so it can add itself to WiFi on boot.
