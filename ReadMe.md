@@ -38,6 +38,7 @@ Requires reboot.
 ### Clone the repo
 
 `cd ~/Desktop`
+
 `git clone https://github.com/MrMicrowaveOven/flash-camera-server.git`
 
 ### Add AWS Credentials
