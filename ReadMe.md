@@ -58,13 +58,19 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 
 `python helloWorld.py`
 
+#### If guff with boto3, run the following:
+
+`sudo python -m pip install --upgrade --force setuptools`
+
+`sudo python -m pip install --upgrade --force pip`
+
 ### No need to install Serveo, since it's fucking awesome, but run the following to enable bypassing security protocols:
 
 `ssh -o ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net`
 
 ### Add the new Camera to the database, with the tunnel_url.  Make note of the ID.
 
-### Add to crontab, so the Server and Serveo start on Boot
+### Add to crontab, so the Server and Serveo start on Boot (`crontab -e`)
 
 ```
 @reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/helloWorld.py >/home/pi/serverlog 2>&1)
