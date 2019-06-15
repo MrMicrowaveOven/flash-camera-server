@@ -95,3 +95,21 @@ network={
 ```
 
 Add the necessary network credentials, so it can add itself to WiFi on boot.
+
+### Add the Admin Interface shortcut to the desktop.
+
+It should contain the following:
+
+```
+[Desktop Entry]
+Name=Admin Interface
+Comment=This allows the Flash Cam owner to update the software, as well as ch$
+Icon=/usr/share/pixmaps/geany.xpm
+Exec=python3 /home/pi/Desktop/flash-camera-server/interface.py
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;
+```
+
+Save it as `Admin Interface.desktop`
