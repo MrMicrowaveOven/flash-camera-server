@@ -10,17 +10,57 @@ window.title("Wifi Networks")
 
 window.attributes('-fullscreen', True)
 
-def select_wifi(wifi_id):
-    print(wifi_id)
-
 buttons = []
 
-def refresh_wifi_buttons():
+wifi_login_fields = []
+
+def select_wifi(wifi_name):
+    destroy_all_buttons()
+    global wifi_login_fields
+    lbl = Label(window, text=("Connect to " + wifi_name))
+    lbl.grid(column=0, row=1)
+    wifi_login_fields.append(lbl)
+
+    lbl = Label(window, text="Wifi Password: ")
+    lbl.grid(column=0, row=2)
+    wifi_login_fields.append(lbl)
+
+    password = Entry(window)
+    password.grid(column=1, row=2)
+    wifi_login_fields.append(password)
+
+    btn = Button(window, text="Pick another Wifi", command=refresh_wifi_buttons)
+    btn.grid(column=0, row=3)
+    wifi_login_fields.append(btn)
+
+    btn = Button(window, text="Connect to Wifi", command= lambda: connect_to_wifi(wifi_name, password.get()))
+    btn.grid(column=1, row=3)
+    wifi_login_fields.append(btn)
+
+def connect_to_wifi(wifi_name, wifi_password):
+    print(wifi_name)
+    print(wifi_password)
+
+def destroy_all_buttons():
     global buttons
     for button in buttons:
         button.destroy()
     buttons = []
-    wifis = ['tatuin', 'stuff', 'crap', 'meh']
+
+def destroy_wifi_login_fields():
+    global wifi_login_fields
+    for wifi_login_field in wifi_login_fields:
+        wifi_login_field.destroy()
+    wifi_login_fields = []
+
+def get_wifis():
+    return ['tatuin', 'stuff', 'crap', 'meh']
+
+def refresh_wifi_buttons():
+    destroy_wifi_login_fields()
+    destroy_all_buttons()
+
+    wifis = get_wifis()
     for i in range(len(wifis)):
         wifi = wifis[i]
         wifi_button = Button(window, text=wifi, command= lambda wifi=wifi: select_wifi(wifi))
