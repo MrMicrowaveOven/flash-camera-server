@@ -96,6 +96,12 @@ network={
 
 Add the necessary network credentials, so it can add itself to WiFi on boot.
 
+### Set the Admin Interface to run on boot
+
+`sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
+
+Add `@python3 /home/pi/Desktop/flash-camera-server/interface.py` to the file, between `@pcmanfm` and `@xscreensaver` lines.
+
 ### Add the Admin Interface shortcut to the desktop.
 
 It should contain the following:
