@@ -33,10 +33,10 @@ def get_ssid_name(ssid_line):
     return ssid_line[9:].replace('"', '')
 
 def is_ssid_line(line):
-    return "ssid" in line and line.index("ssid") == 0
+    return "ssid" in line and line.index("ssid") == 1
 
 def is_psk_line(line):
-    return "psk" in line and line.index("psk") == 0
+    return "psk" in line and line.index("psk") == 1
 
 def make_wifi_info_block(ssid, psk):
     wifi_info_arr = ['']
