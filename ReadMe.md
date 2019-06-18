@@ -102,6 +102,10 @@ Add the necessary network credentials, so it can add itself to WiFi on boot.
 
 Add `@python3 /home/pi/Desktop/flash-camera-server/interface.py` to the file, between `@pcmanfm` and `@xscreensaver` lines.
 
+### Give permission for the interface to update wifi info
+
+`sudo chmod 777 /etc/wpa_supplicant/wpa_supplicant.conf`
+
 ### Add the Admin Interface shortcut to the desktop.
 
 It should contain the following:
