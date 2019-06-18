@@ -1,8 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
 
-from wifi import Cell, Scheme
-
 import git
 
 import wifi_info_module
