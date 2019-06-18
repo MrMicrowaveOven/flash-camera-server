@@ -33,22 +33,22 @@ def get_ssid_name(ssid_line):
     return ssid_line[9:].replace('"', '')
 
 def is_ssid_line(line):
-    return "ssid" in line and line.index("ssid") == 8
+    return "ssid" in line and line.index("ssid") == 0
 
 def is_psk_line(line):
-    return "psk" in line and line.index("psk") == 8
+    return "psk" in line and line.index("psk") == 0
 
 def make_wifi_info_block(ssid, psk):
     wifi_info_arr = ['']
     wifi_info_arr.append('network={')
-    wifi_info_arr.append('        ssid="' + ssid + '"')
-    wifi_info_arr.append('        psk="' + psk + '"')
-    wifi_info_arr.append('        key_mgmt=WPA-PSK')
+    wifi_info_arr.append("\tssid=\"" + ssid + '"')
+    wifi_info_arr.append("\tpsk=\"" + psk + '"')
+    wifi_info_arr.append("\tkey_mgmt=WPA-PSK")
     wifi_info_arr.append('}')
     return wifi_info_arr
 
 def get_updated_psk_line(psk_line, new_psk):
-    PSK_LINE_START = '        psk="'
+    PSK_LINE_START = "\tpsk=\""
     PSK_LINE_END = '"'
     if is_psk_line(psk_line):
         return PSK_LINE_START + new_psk + PSK_LINE_END
