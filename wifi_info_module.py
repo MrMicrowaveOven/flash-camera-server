@@ -1,5 +1,5 @@
 def get_wifi_list():
-    file = open('wpa_supplicant.conf', 'r')
+    file = open('/etc/wpa_supplicant/wpa_supplicant.conf', 'r')
     file_list = file.read().splitlines()
 
     ssid_names = []
@@ -10,7 +10,7 @@ def get_wifi_list():
     return ssid_names
 
 def update_wifi_info(ssid, psk):
-    file = open('wpa_supplicant.conf', 'r')
+    file = open('/etc/wpa_supplicant/wpa_supplicant.conf', 'r')
     file_list = file.read().splitlines()
     ssid_exists = False
 
@@ -27,7 +27,7 @@ def update_wifi_info(ssid, psk):
 
         for i in range(6):
             file_list.append(wifi_info_block[i])
-    open('wpa_supplicant.conf', 'w').write('\n'.join(file_list))
+    open('/etc/wpa_supplicant/wpa_supplicant.conf', 'w').write('\n'.join(file_list))
 
 def get_ssid_name(ssid_line):
     return ssid_line[9:].replace('"', '')
