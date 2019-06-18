@@ -30,7 +30,7 @@ def update_wifi_info(ssid, psk):
     open('/etc/wpa_supplicant/wpa_supplicant.conf', 'w').write('\n'.join(file_list))
 
 def get_ssid_name(ssid_line):
-    return ssid_line[9:].replace('"', '')
+    return ssid_line[6:].replace('"', '')
 
 def is_ssid_line(line):
     return "ssid" in line and line.index("ssid") == 1
