@@ -96,6 +96,10 @@ network={
 
 Add the necessary network credentials, so it can add itself to WiFi on boot.
 
+### Install gitpython
+
+`pip3 install gitpython`
+
 ### Set the Admin Interface to run on boot
 
 `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
