@@ -110,7 +110,7 @@ Add `@python3 /home/pi/Desktop/flash-camera-server/interface.py` to the file, be
 
 `sudo chmod 777 /etc/wpa_supplicant/wpa_supplicant.conf`
 
-### Add the Admin Interface shortcut to the desktop.
+### Add the Admin Interface shortcut to the desktop, in case the user closes it.
 
 It should contain the following:
 
