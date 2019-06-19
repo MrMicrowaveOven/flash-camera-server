@@ -127,3 +127,11 @@ Categories=None;
 ```
 
 Save it as `Admin Interface.desktop`
+
+### Update the Splash image
+
+<!-- Change `/usr/share/plymouth/themes/pix/splash.png` to this image: https://benjs-bucket.s3-us-west-1.amazonaws.com/camera_splash.jpeg
+
+May need to use `sudo mv`. -->
+
+https://scribles.net/customizing-boot-up-screen-on-raspberry-pi/
