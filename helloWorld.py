@@ -31,7 +31,7 @@ def take_picture():
     camera.capture(file_name)
     camera.close()
 
-    print file_name
+    print(file_name)
     return file_name
 
 def send_picture_to_s3(file_name):
