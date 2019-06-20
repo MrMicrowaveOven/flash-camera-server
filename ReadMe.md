@@ -31,15 +31,20 @@ Requires reboot.
 
 Requires reboot.
 
-### Install Git
+### Stacked terminal commands:
+#### Install Git
+#### Give permission for the interface to update wifi info
+#### Clone the repo
+#### Install boto3
+#### Install gitpython
 
-`sudo apt install git`
-
-### Clone the repo
-
-`cd ~/Desktop`
-
-`git clone https://github.com/MrMicrowaveOven/flash-camera-server.git`
+`sudo apt install git ;`
+`sudo chmod 777 /etc/wpa_supplicant/wpa_supplicant.conf ;`
+`cd ~/Desktop ;`
+`git clone https://github.com/MrMicrowaveOven/flash-camera-server.git ;`
+`cd flash-camera-server ;`
+`pip install boto3 ;`
+`pip3 install gitpython ;`
 
 ### Add AWS Credentials
 ```
@@ -49,10 +54,6 @@ leafpad ~/.aws/credentials
 ```
 
 Open the credentials file.  You may need to use the shitty interface, since the file descriptor doesn't default to text.  The content of the document can be found on LastPass, under S3 Key.
-
-### Install boto3
-
-`pip install boto3`
 
 ### Initiate the server to test
 
@@ -96,19 +97,11 @@ network={
 
 Add the necessary network credentials, so it can add itself to WiFi on boot.
 
-### Install gitpython
-
-`pip3 install gitpython`
-
 ### Set the Admin Interface to run on boot
 
 `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
 
 Add `@python3 /home/pi/Desktop/flash-camera-server/interface.py` to the file, between `@pcmanfm` and `@xscreensaver` lines.
-
-### Give permission for the interface to update wifi info
-
-`sudo chmod 777 /etc/wpa_supplicant/wpa_supplicant.conf`
 
 ### Add the Admin Interface shortcut to the desktop, in case the user closes it.
 
