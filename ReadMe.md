@@ -46,6 +46,12 @@ Requires reboot.
 `pip install boto3 ;`
 `pip3 install gitpython ;`
 
+#### If guff with boto3, run the following:
+
+`sudo python -m pip install --upgrade --force setuptools`
+
+`sudo python -m pip install --upgrade --force pip`
+
 ### Add AWS Credentials
 ```
 mkdir ~/.aws
@@ -57,13 +63,7 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 
 ### Initiate the server to test
 
-`python helloWorld.py`
-
-#### If guff with boto3, run the following:
-
-`sudo python -m pip install --upgrade --force setuptools`
-
-`sudo python -m pip install --upgrade --force pip`
+`python3 helloWorld.py`
 
 ### No need to install Serveo, since it's fucking awesome, but run the following to enable bypassing security protocols:
 
