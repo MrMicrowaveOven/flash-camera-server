@@ -71,11 +71,17 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 
 ### Add the new Camera to the database, with the tunnel_url.  Make note of the ID.
 
+### To keep your Serveo shit running all night, add the following to `/etc/ssh/ssh_config`
+```
+ServerAliveInterval 30
+ServerAliveCountMax 3
+```
+
 ### Add to crontab, so the Server and Serveo start on Boot (`crontab -e`)
 
 ```
 @reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/helloWorld.py >/home/pi/serverlog 2>&1)
-@reboot (/bin/sleep 25; ssh -o TCPKeepAlive=yes ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
+@reboot (/bin/sleep 25; ssh -o ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
 ```
 
 ### Test!
