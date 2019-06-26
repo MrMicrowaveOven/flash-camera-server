@@ -75,7 +75,7 @@ Open the credentials file.  You may need to use the shitty interface, since the 
 
 ```
 @reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/helloWorld.py >/home/pi/serverlog 2>&1)
-@reboot (/bin/sleep 25; ssh -o ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
+@reboot (/bin/sleep 25; ssh -o TCPKeepAlive=yes ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
 ```
 
 ### Test!
