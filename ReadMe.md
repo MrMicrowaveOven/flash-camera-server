@@ -79,9 +79,11 @@ ServerAliveCountMax 3
 
 ### Add to crontab, so the Server and Serveo start on Boot (`crontab -e`)
 
+That bottom part reboots the FlashCam everyday at midnight.
 ```
 @reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/helloWorld.py >/home/pi/serverlog 2>&1)
 @reboot (/bin/sleep 25; ssh -o ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
+0 0 * * * root reboot
 ```
 
 ### Test!
