@@ -45,7 +45,7 @@ def send_picture_to_s3(file_name):
 
     return 'https://s3-us-west-1.amazonaws.com/%s/%s' % (bucket_name, file_name)
 
-def delete_image(file_name)
+def delete_image(file_name):
     import os
     os.remove(file_name)
     print("File removed!")
