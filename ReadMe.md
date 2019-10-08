@@ -86,25 +86,6 @@ That bottom part reboots the FlashCam everyday at midnight.
 0 0 * * * root reboot
 ```
 
-### Test!
-
-`sudo reboot` to see if it all works!
-
-### Add WiFi credentials
-
-`sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
-
-You'll see these:
-
-```
-network={
-    ssid="testing"
-    psk="testingPassword"
-}
-```
-
-Add the necessary network credentials, so it can add itself to WiFi on boot.
-
 ### Set the Admin Interface to run on boot
 
 `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
@@ -129,10 +110,54 @@ Categories=None;
 
 Save it as `Admin Interface.desktop`
 
+### Add WiFi credentials
+
+Use the interface you just created.  Double-check that it worked with
+
+`sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+You should see these:
+
+```
+network={
+    ssid="testing"
+    psk="testingPassword"
+}
+```
+
+### Update /boot/config.txt so it will work on most HDMI monitors
+
+`sudo nano /boot/config.txt`
+
+Add the following lines to the bottom:
+
+```
+hdmi_force_hotplug=1
+hdmi_group=1
+hdmi_mode=16
+```
+
+### Test!
+
+`sudo reboot` to see if it all works!
+
+### IF you would like an hourly reset:
+
+`sudo crontab -e -u root`
+
+Add the following line to the bottom:
+
+```
+0 * * * * /sbin/shutdown -r >/home/pi/rebootlog 2>&1
+```
+
+This will call a reset every hour at 0 minutes.
+
 ### Update the Splash image
 
+(still never figured out)
 <!-- Change `/usr/share/plymouth/themes/pix/splash.png` to this image: https://benjs-bucket.s3-us-west-1.amazonaws.com/camera_splash.jpeg
 
 May need to use `sudo mv`. -->
 
-https://scribles.net/customizing-boot-up-screen-on-raspberry-pi/
+<!-- https://scribles.net/customizing-boot-up-screen-on-raspberry-pi/ -->
