@@ -13,7 +13,9 @@ app = Flask(__name__)
 def index():
     try:
         file_name = take_picture()
-        return send_picture_to_s3(file_name)
+        response = send_picture_to_s3(file_name)
+        delete_image(file_name)
+        return response
     except Exception as e:
         print(e)
         return e.message
@@ -42,6 +44,9 @@ def send_picture_to_s3(file_name):
 
     return 'https://s3-us-west-1.amazonaws.com/%s/%s' % (bucket_name, file_name)
 
+def delete_image(file_name)
+    import os
+    os.remove(file_name)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080, host='0.0.0.0')
