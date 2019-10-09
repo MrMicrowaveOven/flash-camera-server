@@ -53,8 +53,13 @@ lbl.grid(column=BASE_COLUMN, row=500)
 
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
-	pull_response = g.pull()
-
+	try:
+		pull_response = g.pull()
+	except Exception as e:
+		print(e)
+		pull_response_label = Label(window, text="There was an issue updating.  Please check your internet connection and try again.")
+		pull_response_label.grid(column=BASE_COLUMN, row=520)
+		return()
 	print(pull_response)
 	pull_response_label = ''
 	if pull_response == "Already up-to-date.":
@@ -62,6 +67,7 @@ def update_flash_cam_repo():
 	else:
 		pull_response_label = Label(window, text="Updated!  You'll have the most recent version after you restart.")
 	pull_response_label.grid(column=BASE_COLUMN, row=520)
+
 update_button = Button(window, text="Update", command=update_flash_cam_repo)
 update_button.grid(column=BASE_COLUMN+1, row=500)
 
