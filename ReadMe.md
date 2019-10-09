@@ -83,6 +83,7 @@ ServerAliveCountMax 3
 @reboot (/bin/sleep 30; ssh -o ServerAliveInterval=30 -tt -R dirk1:80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1)
 @reboot (/bin/sleep 60; ssh -o ServerAliveInterval=30 -tt -R dirk1:80:localhost:8080 serveo.net >/home/pi/serveo2log 2>&1)
 @reboot (/bin/sleep 120; ssh -o ServerAliveInterval=30 -tt -R dirk1:80:localhost:8080 serveo.net >/home/pi/serveo3log 2>&1)
+@reboot (/bin/sleep 180; ssh -o ServerAliveInterval=30 -tt -R dirk1:80:localhost:8080 serveo.net >/home/pi/serveo4log 2>&1)
 ```
 
 ### Set the Admin Interface to run on boot
