@@ -25,7 +25,7 @@ def take_picture():
     from picamera import PiCamera
 
     time_num = int(time.time())
-    file_name = 'chateau%s.jpg' % time_num
+    file_name = 'image%s.jpg' % time_num
 
     camera = PiCamera()
     camera.resolution = (1024, 768)
