@@ -54,6 +54,7 @@ lbl.grid(column=BASE_COLUMN, row=500)
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
 	pull_response = g.pull()
+
 	print(pull_response)
 	pull_response_label = ''
 	if pull_response == "Already up-to-date.":
@@ -64,7 +65,22 @@ def update_flash_cam_repo():
 update_button = Button(window, text="Update", command=update_flash_cam_repo)
 update_button.grid(column=BASE_COLUMN+1, row=500)
 
-quit_button = Button(window, text="Quit", command=window.destroy)
-quit_button.grid(column=BASE_COLUMN+2, row=1000)
+def confirm_reset():
+	if tkinter.messagebox.askokcancel("Reset Camera?","Are you sure you would like to reset your camera?"):
+		reset_camera()
+
+def reset_camera():
+	command = "/usr/bin/sudo /sbin/shutdown -r now"
+	import subprocess
+	process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+	output = process.communicate()[0]
+	print(output)
+
+reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
+reset_button.grid(column=BASE_COLUMN+2, row=1000)
+
+quit_button = Button(window, text="Programmer Mode", command=window.destroy)
+quit_button.grid(column=BASE_COLUMN, row=1500)
+Label(window, text="(please don't click this unless you really know what you're doing)").grid(column=0, row=1600)
 
 window.mainloop()
