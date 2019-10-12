@@ -25,8 +25,11 @@ params = {
 
 
 def call_serveo(camera_url):
-        print('serveo will be called soon')
-        print(camera_url_name)
+	print('serveo will be called soon')
+	print(camera_url)
+	import os
+	command = "ssh -o ServerAliveInterval=30 -tt -R " + camera_url + ":80:localhost:8080 serveo.net >/home/pi/serveolog 2>&1"
+	os.system(command)
 
 
 response = requests.patch(url = server_url, params = params)
