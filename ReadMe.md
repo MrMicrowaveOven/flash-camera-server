@@ -59,6 +59,16 @@ touch ~/.aws/credentials
 leafpad ~/.aws/credentials
 ```
 
+### Add name.py, which includes the Camera Name
+
+
+`touch ~/Desktop/flash-camera-server/name.py`
+
+```
+camera_id = 2
+camera_name = "flash-explorer"
+```
+
 Open the credentials file.  You may need to use the shitty interface, since the file descriptor doesn't default to text.  The content of the document can be found on LastPass, under S3 Key.
 
 ### Initiate the server to test
