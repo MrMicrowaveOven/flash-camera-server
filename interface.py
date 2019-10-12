@@ -28,7 +28,7 @@ psk_entry.grid(column=BASE_COLUMN+1, row=3)
 
 def update_wifi_info():
 	wifi_info_module.update_wifi_info(ssid_entry.get(), psk_entry.get())
-	Label(window, text="Wifi info added for " + ssid_entry.get() + " added!  Restart to connect!").grid(column=0, row=4)
+	Label(window, bg="orange", text="Wifi info added for " + ssid_entry.get() + " added!  Restart to connect!").grid(column=0, row=4)
 
 Button(window, text="Add wifi info", command=update_wifi_info).grid(column=2, row=3)
 
@@ -57,15 +57,15 @@ def update_flash_cam_repo():
 		pull_response = g.pull()
 	except Exception as e:
 		print(e)
-		pull_response_label = Label(window, text="There was an issue updating.  Please check your internet connection and try again.")
+		pull_response_label = Label(window, bg="orange", text="There was an issue updating.  Please check your internet connection and try again.")
 		pull_response_label.grid(column=BASE_COLUMN, row=520)
 		return()
 	print(pull_response)
 	pull_response_label = ''
 	if pull_response == "Already up-to-date.":
-		pull_response_label = Label(window, text=pull_response)
+		pull_response_label = Label(window, bg="orange", text=pull_response)
 	else:
-		pull_response_label = Label(window, text="Updated!  You'll have the most recent version after you restart.")
+		pull_response_label = Label(window, bg="orange", text="Updated!  You'll have the most recent version after you restart.")
 	pull_response_label.grid(column=BASE_COLUMN, row=520)
 
 update_button = Button(window, text="Update", command=update_flash_cam_repo)
