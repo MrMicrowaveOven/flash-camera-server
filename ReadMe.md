@@ -43,7 +43,7 @@ Requires reboot.
 `cd ~/Desktop ;`
 `git clone https://github.com/MrMicrowaveOven/flash-camera-server.git ;`
 `cd flash-camera-server ;`
-`pip install boto3 ;`
+`pip3 install boto3 ;`
 `pip3 install gitpython ;`
 
 #### If guff with boto3, run the following:
@@ -51,6 +51,15 @@ Requires reboot.
 `sudo python -m pip install --upgrade --force setuptools`
 
 `sudo python -m pip install --upgrade --force pip`
+
+Sometimes `pip install boto3` works as well.
+
+You may get a 'No ordered dict' error at some point.  If so run the following:
+```
+pip uninstall urllib3
+
+pip install urllib3==1.22
+```
 
 ### Add AWS Credentials
 ```
