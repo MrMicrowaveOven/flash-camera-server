@@ -157,7 +157,7 @@ hdmi_mode=16
 Add the following line to the bottom:
 
 ```
-0 * * * * /sbin/shutdown -r >/home/pi/rebootlog 2>&1
+0 * * * * /sbin/shutdown -r >> /home/pi/rebootlog 2>&1
 ```
 
 This will call a reset every hour at 0 minutes.
