@@ -95,6 +95,15 @@ ServerAliveCountMax 3
 
 The first line calls the python server (`server/server.py`), the second line calls serveo to broadcast the server to a url (`server/serveo/call_serveo.py`).
 
+### Add relevant files to .gitignore
+
+```
+server/serveo/camera_name.py
+
+__pycache__/
+*.py[cod]
+```
+
 ### Set the Admin Interface to run on boot
 
 `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
