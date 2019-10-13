@@ -89,8 +89,8 @@ ServerAliveCountMax 3
 
 ### Add to crontab, so the Server and Serveo start on Boot (`crontab -e`)
 ```
-@reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/server.py >/home/pi/serverlog 2>&1)
-@reboot (/bin/sleep 30; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/serveo/call_serveo.py >/home/pi/serveo_python_log 2>&1)
+@reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/server.py >> /home/pi/serverlog 2>&1)
+@reboot (/bin/sleep 30; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/serveo/call_serveo.py >> /home/pi/serveo_python_log 2>&1)
 ```
 
 The first line calls the python server (`server/server.py`), the second line calls serveo to broadcast the server to a url (`server/serveo/call_serveo.py`).
