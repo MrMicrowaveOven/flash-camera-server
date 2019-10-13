@@ -89,17 +89,17 @@ ServerAliveCountMax 3
 
 ### Add to crontab, so the Server and Serveo start on Boot (`crontab -e`)
 ```
-@reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/helloWorld.py >/home/pi/serverlog 2>&1)
-@reboot (/bin/sleep 30; /usr/bin/python /home/pi/Desktop/flash-camera-server/call_serveo.py >/home/pi/serveo_python_log 2>&1)
+@reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/server.py >/home/pi/serverlog 2>&1)
+@reboot (/bin/sleep 30; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/serveo/call_serveo.py >/home/pi/serveo_python_log 2>&1)
 ```
 
-The first line calls the python server (`helloWorld.py`), the second line calls serveo to broadcast the server to a url (`call_serveo.py`).
+The first line calls the python server (`server/server.py`), the second line calls serveo to broadcast the server to a url (`server/serveo/call_serveo.py`).
 
 ### Set the Admin Interface to run on boot
 
 `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
 
-Add `@python3 /home/pi/Desktop/flash-camera-server/interface.py` to the file, between `@pcmanfm` and `@xscreensaver` lines.
+Add `@python3 /home/pi/Desktop/flash-camera-server/camera_interface/interface.py` to the file, between `@pcmanfm` and `@xscreensaver` lines.
 
 ### Add the Admin Interface shortcut to the desktop, in case the user closes it.
 
@@ -110,7 +110,7 @@ It should contain the following:
 Name=Admin Interface
 Comment=This allows the Flash Cam owner to update the software, as well as ch$
 Icon=/usr/share/pixmaps/geany.xpm
-Exec=python3 /home/pi/Desktop/flash-camera-server/interface.py
+Exec=python3 /home/pi/Desktop/flash-camera-server/camera_interface/interface.py
 Type=Application
 Encoding=UTF-8
 Terminal=false
