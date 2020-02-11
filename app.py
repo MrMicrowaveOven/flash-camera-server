@@ -20,8 +20,6 @@ def start_heartbeat():
     while True:
         response = requests.get(camera_url)
 
-        print(response)
-        print(response.json())
         picture_id = response.json()['picture_id']
         if picture_id:
             # Take a picture
@@ -46,7 +44,7 @@ def send_picture_to_s3(file_name):
     return 'https://s3-us-west-1.amazonaws.com/' + bucket_name + '/' + file_name
 
 def take_picture():
-    file_name = camera_name_str + str(int(time.time()))
+    file_name = camera_name_str + str(int(time.time())) + '.jpg'
     camera = PiCamera()
     sleep(2)
     camera.capture(file_name)
@@ -55,7 +53,5 @@ def take_picture():
 
 def delete_image(file_name):
     os.remove(file_name)
-    print("File removed!")
-    print(file_name)
 
 start_heartbeat()
