@@ -43,7 +43,7 @@ def send_picture_to_s3(file_name):
 
     s3_client.upload_file(file_name, bucket_name, file_name, ExtraArgs={'ContentType': 'image/jpeg'})
 
-    return 'https://s3-us-west-1.amazonaws.com/%s/%s' % (bucket_name, file_name)
+    return 'https://s3-us-west-1.amazonaws.com/' + bucket_name + '/' + file_name
 
 def take_picture():
     file_name = camera_name_str + str(int(time.time()))
