@@ -18,22 +18,25 @@ camera_name_str = camera_name.camera_name
 
 def start_heartbeat():
     while True:
-        response = requests.get(camera_url)
+        try:
+            response = requests.get(camera_url)
 
-        picture_id = response.json()['picture_id']
-        if picture_id:
-            # Take a picture
-            file_name = take_picture()
-            # Upload to S3
-            photo_url = send_picture_to_s3(file_name)
-            # Delete local photo
-            delete_image(file_name)
+            picture_id = response.json()['picture_id']
+            if picture_id:
+                # Take a picture
+                file_name = take_picture()
+                # Upload to S3
+                photo_url = send_picture_to_s3(file_name)
+                # Delete local photo
+                delete_image(file_name)
 
-            requests.patch(mothership_url + '/pictures/' + str(picture_id), {'photo_url': photo_url})
-            print('updating')
-        else:
-            print('standing by')
-            sleep(1)
+                requests.patch(mothership_url + '/pictures/' + str(picture_id), {'photo_url': photo_url})
+                print('updating')
+            else:
+                print('standing by')
+                sleep(1)
+        except:
+            print("Error recognized")
 
 def send_picture_to_s3(file_name):
     s3_client = boto3.client('s3')
