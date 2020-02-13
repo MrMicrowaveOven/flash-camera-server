@@ -63,7 +63,7 @@ def start_heartbeat():
 
 def log(message):
     current_time = time.ctime()
-    print(current_time + ': ' + message)
+    print(current_time + ' -- ' + message)
 
 def send_picture_to_s3(file_name):
     s3_client = boto3.client('s3')
