@@ -17,44 +17,49 @@ camera_url = mothership_url + '/cameras/' +  str(camera_name.camera_id)
 camera_name_str = camera_name.camera_name
 
 def start_heartbeat():
-    posted_stand_by_log = False
+    last_posted_message = False
+    current_message_log = []
     while True:
         picture_id = False
         try:
             response = requests.get(camera_url)
-
             picture_id = response.json()['picture_id']
         except:
-            print('get camera request failed')
+            current_message_log.append('get camera request failed')
 
         if picture_id:
-            posted_stand_by_log = False
             # Take a picture
             try:
                 file_name = take_picture()
             except:
-                print('camera error')
+                current_message_log.append('camera error')
             # Upload to S3
             try:
                 photo_url = send_picture_to_s3(file_name)
             except:
-                print('S3 send failed')
+                current_message_log.append('S3 send failed')
             # Delete local photo
             try:
                 delete_image(file_name)
             except:
-                print('Image deletion failed')
+                current_message_log.append('Image deletion failed')
 
             try:
                 requests.patch(mothership_url + '/pictures/' + str(picture_id), {'photo_url': photo_url})
             except:
-                print('patch camera request failed')
-            print('updating')
-        else:
-            if not posted_stand_by_log:
-                print('standing by')
-                posted_stand_by_log = True
-            sleep(1)
+                current_message_log.append('patch camera request failed')
+
+
+            if len(current_message_log) == 0:
+                print('sending picture' + file_name)
+        elif len(current_message_log) == 0:
+            current_message_log.append('standing by')
+
+        if current_message_log != last_posted_message:
+            for message in current_message_log:
+                print(message)
+        last_posted_message = current_message_log
+        sleep(1)
 
 def send_picture_to_s3(file_name):
     s3_client = boto3.client('s3')
