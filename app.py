@@ -48,7 +48,7 @@ def start_heartbeat():
                 print('patch camera request failed')
             print('updating')
         else:
-            print('standing by')
+            # print('standing by')
             sleep(1)
 
 def send_picture_to_s3(file_name):
