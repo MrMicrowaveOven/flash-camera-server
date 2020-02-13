@@ -51,7 +51,7 @@ def start_heartbeat():
 
 
             if len(current_message_log) == 0:
-                print('sending picture ' + picture_id)
+                print('sending picture ' + str(picture_id))
         elif len(current_message_log) == 0:
             current_message_log.append('standing by')
 
