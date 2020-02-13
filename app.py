@@ -17,9 +17,9 @@ camera_url = mothership_url + '/cameras/' +  str(camera_name.camera_id)
 camera_name_str = camera_name.camera_name
 
 def start_heartbeat():
-    last_posted_message = False
-    current_message_log = []
+    last_posted_message = []
     while True:
+        current_message_log = []
         picture_id = False
         try:
             response = requests.get(camera_url)
