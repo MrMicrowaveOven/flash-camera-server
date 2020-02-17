@@ -70,7 +70,7 @@ leafpad ~/.aws/credentials
 
 Fill this doc with the note on Lastpass, under S3 Key.
 
-### Update mac_address in the database
+### Update mac_address in the database (remove the last digit that's a capital)
 
 ### Initiate the server to test
 
