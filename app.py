@@ -75,7 +75,7 @@ def send_picture_to_s3(file_name):
     return 'https://s3-us-west-1.amazonaws.com/' + bucket_name + '/' + file_name
 
 def take_picture():
-    file_name = camera_name_str + str(int(time.time())) + '.jpg'
+    file_name = mac_address + '-' + str(int(time.time())) + '.jpg'
     camera = PiCamera()
     sleep(2)
     camera.capture(file_name)
