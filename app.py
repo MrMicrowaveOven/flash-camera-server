@@ -4,17 +4,18 @@ from time import sleep
 import requests
 import boto3
 
-import camera_name
-
 from picamera import PiCamera
 
 import os
 
-mothership_url = 'https://flash-sms-server.herokuapp.com'
-# camera_name_str = camera_name.camera_name
+import uuid
 
-camera_url = mothership_url + '/cameras/' +  str(camera_name.camera_id)
-camera_name_str = camera_name.camera_name
+mothership_url = 'https://flash-sms-server.herokuapp.com'
+
+camera_url = mothership_url + '/cameras'
+mac_address = hex(uuid.getnode())
+camera_url_with_params = camera_url + '?mac_address=' + mac_address
+
 
 def start_heartbeat():
     last_posted_message = []
@@ -22,7 +23,7 @@ def start_heartbeat():
         current_message_log = []
         picture_id = False
         try:
-            response = requests.get(camera_url)
+            response = requests.get(camera_url_with_params)
             picture_id = response.json()['picture_id']
         except:
             current_message_log.append('get camera request failed')
