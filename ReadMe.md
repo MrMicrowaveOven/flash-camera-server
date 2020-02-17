@@ -68,47 +68,22 @@ touch ~/.aws/credentials
 leafpad ~/.aws/credentials
 ```
 
-### Add name.py, which includes the Camera Name
+Fill this doc with the note on Lastpass, under S3 Key.
 
-
-`touch ~/Desktop/flash-camera-server/name.py`
-
-```
-camera_id = 2
-camera_name = "flash-explorer"
-```
-
-Open the credentials file.  You may need to use the shitty interface, since the file descriptor doesn't default to text.  The content of the document can be found on LastPass, under S3 Key.
+### Update mac_address in the database
 
 ### Initiate the server to test
 
-`python3 helloWorld.py`
+`python3 app.py`
 
-### No need to install Serveo, since it's fucking awesome, but run the following to enable bypassing security protocols:
-
-`ssh -o ServerAliveInterval=30 -tt -R {camera-name}:80:localhost:8080 serveo.net`
-
-### Add the new Camera to the database, with the tunnel_url.  Make note of the ID.
-
-### To keep your Serveo shit running all night, add the following to `/etc/ssh/ssh_config`
+### Add to crontab, so the app.py starts on boot (`crontab -e`)
 ```
-ServerAliveInterval 30
-ServerAliveCountMax 3
+@reboot (/bin/sleep 15; /usr/bin/python3.5 /home/pi/Desktop/flash-camera-server/app.py)
 ```
-
-### Add to crontab, so the Server and Serveo start on Boot (`crontab -e`)
-```
-@reboot (/bin/sleep 15; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/server.py >> /home/pi/serverlog 2>&1)
-@reboot (/bin/sleep 30; /usr/bin/python /home/pi/Desktop/flash-camera-server/server/serveo/call_serveo.py >> /home/pi/serveo_python_log 2>&1)
-```
-
-The first line calls the python server (`server/server.py`), the second line calls serveo to broadcast the server to a url (`server/serveo/call_serveo.py`).
 
 ### Add relevant files to .gitignore
 
 ```
-server/serveo/camera_name.py
-
 __pycache__/
 *.py[cod]
 ```
@@ -167,18 +142,6 @@ hdmi_mode=16
 ### Test!
 
 `sudo reboot` to see if it all works!
-
-### IF you would like an hourly reset:
-
-`sudo crontab -e -u root`
-
-Add the following line to the bottom:
-
-```
-0 * * * * /sbin/shutdown -r >> /home/pi/rebootlog 2>&1
-```
-
-This will call a reset every hour at 0 minutes.
 
 ### Update the Splash image
 
