@@ -77,7 +77,7 @@ def send_picture_to_s3(file_name):
 def take_picture():
     file_name = mac_address + '-' + str(int(time.time())) + '.jpg'
     camera = PiCamera()
-    sleep(2)
+    sleep(1)
     camera.capture(file_name)
     camera.close()
     return file_name
