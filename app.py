@@ -12,8 +12,6 @@ import uuid
 
 mothership_url = 'https://flash-sms-server.herokuapp.com'
 
-camera = PiCamera()
-
 camera_url = mothership_url + '/cameras'
 mac_address = hex(uuid.getnode())
 camera_url_with_params = camera_url + '?mac_address=' + mac_address
@@ -78,10 +76,10 @@ def send_picture_to_s3(file_name):
 
 def take_picture():
     file_name = mac_address + '-' + str(int(time.time())) + '.jpg'
-
-    # sleep(2)
+    camera = PiCamera()
+    sleep(2)
     camera.capture(file_name)
-    # camera.close()
+    camera.close()
     return file_name
 
 def delete_image(file_name):
