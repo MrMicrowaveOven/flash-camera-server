@@ -13,13 +13,13 @@ Plug the following into the Raspberry Pi
 
 Then put the case on, and secure the camera (duct tape).
 
-### Connect to the internet
+### Connect to the internet and set the clock
 
-Top-right.  If you get it wrong the first time it's a pain in the ass.
+Note: If you installed Raspbian yourself, both of these will take place during the intro flow.  However for a store-bought, ready-to-go Raspbian, follow the below steps.
 
-### Set the clock on the Pi
+Set the Wifi on the top-right.  If you get it wrong the first time it's a pain in the ass.
 
-Requires reboot.
+Then set the clock on the Pi.  This generally requires a reboot.
 
 ### Enable the Camera
 
@@ -63,9 +63,7 @@ pip install urllib3==1.22
 
 ### Add AWS Credentials
 ```
-mkdir ~/.aws
-touch ~/.aws/credentials
-leafpad ~/.aws/credentials
+mkdir ~/.aws ; touch ~/.aws/credentials ; leafpad ~/.aws/credentials
 ```
 
 Fill this doc with the note on Lastpass, under S3 Key.
