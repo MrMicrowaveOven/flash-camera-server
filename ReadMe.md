@@ -79,18 +79,13 @@ Fill this doc with the note on Lastpass, under S3 Key.
 @reboot (/bin/sleep 15; /usr/bin/python3.5 /home/pi/Desktop/flash-camera-server/app.py)
 ```
 
-### Add relevant files to .gitignore
-
-```
-__pycache__/
-*.py[cod]
-```
-
 ### Set the Admin Interface to run on boot
 
 `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
 
-Add `@python3 /home/pi/Desktop/flash-camera-server/camera_interface/interface.py` to the file, between `@pcmanfm` and `@xscreensaver` lines.
+Add the following to the file, between `@pcmanfm` and `@xscreensaver` lines.
+
+`@python3 /home/pi/Desktop/flash-camera-server/camera_interface/interface.py`
 
 ### Add the Admin Interface shortcut to the desktop, in case the user closes it.
 
