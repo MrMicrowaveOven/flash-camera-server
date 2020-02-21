@@ -56,9 +56,6 @@ def open_removal_buttons():
 # lbl = Label(window, text="Would you like to update?  If so, click here: ")
 # lbl.grid(column=BASE_COLUMN, row=500)
 
-update_button = Button(window, text="Update Device", command=update_flash_cam_repo)
-update_button.grid(column=BASE_COLUMN, row=500)
-
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
 	try:
@@ -93,14 +90,18 @@ def preview_camera():
 	time.sleep(10)
 	camera.close()
 
+update_button = Button(window, text="Update Device", command=update_flash_cam_repo)
+update_button.grid(column=BASE_COLUMN, row=500)
+
 reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
 reset_button.grid(column=BASE_COLUMN, row=1000)
 
 camera_preview_button = Button(window, text="Preview Camera for 10 seconds", command=preview_camera)
 camera_preview_button.grid(column=BASE_COLUMN, row=1500)
 
-quit_button = Button(window, text="Programmer Mode", command=window.destroy)
-quit_button.grid(column=BASE_COLUMN, row=2500)
-Label(window, text="(please don't enter Programmer Mode unless you really know what you're doing)").grid(column=0, row=2600)
+programmer_mode_button = Button(window, text="Programmer Mode", command=window.destroy)
+programmer_mode_button.grid(column=BASE_COLUMN, row=2500)
+programmer_mode_warning_label = Label(window, text="(please don't enter Programmer Mode unless you really know what you're doing)")
+programmer_mode_warning_label.grid(column=0, row=2600)
 
 window.mainloop()
