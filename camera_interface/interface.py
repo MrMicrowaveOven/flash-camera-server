@@ -15,19 +15,21 @@ window = Tk()
 window.title("Admin Control Panel")
 
 window.attributes('-fullscreen', True)
-lbl = Label(window, text="Hello!  Welcome to the Administrative Control Panel.")
-lbl.grid(column=BASE_COLUMN, row=0)
+welcome_lbl = Label(window, text="Hello!  Welcome to the Administrative Control Panel.")
+welcome_lbl.grid(column=BASE_COLUMN, row=0)
 
-lbl = Label(window, text="Add Wifi Info:")
-lbl.grid(column=BASE_COLUMN, row=1)
+wifi_lbl = Label(window, text="Add Wifi Info:")
+wifi_lbl.grid(column=BASE_COLUMN, row=1)
 
-lbl = Label(window, text="Wifi Name").grid(column=0, row=2)
-ssid_entry = Entry(window)
-ssid_entry.grid(column=BASE_COLUMN+1, row=2)
+wifi_name_lbl = Label(window, text="Wifi Name")
+wifi_name_lbl.grid(column=0, row=2)
+wifi_name_field = Entry(window)
+wifi_name_field.grid(column=BASE_COLUMN+1, row=2)
 
-lbl = Label(window, text="Wifi Password").grid(column=0, row=3)
-psk_entry = Entry(window)
-psk_entry.grid(column=BASE_COLUMN+1, row=3)
+wifi_password_lbl = Label(window, text="Wifi Password")
+wifi_password_lbl.grid(column=0, row=3)
+wifi_password_field = Entry(window)
+wifi_password_field.grid(column=BASE_COLUMN+1, row=3)
 
 def update_wifi_info():
 	wifi_info_module.update_wifi_info(ssid_entry.get(), psk_entry.get())
@@ -54,6 +56,9 @@ def open_removal_buttons():
 # lbl = Label(window, text="Would you like to update?  If so, click here: ")
 # lbl.grid(column=BASE_COLUMN, row=500)
 
+update_button = Button(window, text="Update Device", command=update_flash_cam_repo)
+update_button.grid(column=BASE_COLUMN, row=500)
+
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
 	try:
@@ -70,9 +75,6 @@ def update_flash_cam_repo():
 	else:
 		pull_response_label = Label(window, bg="orange", text="Updated!  You'll have the most recent version after you restart.")
 	pull_response_label.grid(column=BASE_COLUMN, row=520)
-
-update_button = Button(window, text="Update Device", command=update_flash_cam_repo)
-update_button.grid(column=BASE_COLUMN, row=500)
 
 def confirm_reset():
 	if tkinter.messagebox.askokcancel("Reset Camera?","Are you sure you would like to reset your camera?"):
