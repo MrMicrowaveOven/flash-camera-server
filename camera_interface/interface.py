@@ -60,8 +60,8 @@ def preview_camera():
 	camera.close()
 
 def update_wifi_info():
-	wifi_info_module.update_wifi_info(ssid_entry.get(), psk_entry.get())
-	Label(window, bg="orange", text="Wifi info added for " + ssid_entry.get() + " added!  Restart to connect!").grid(column=0, row=4)
+	wifi_info_module.update_wifi_info(wifi_name_field.get(), wifi_password_field.get())
+	Label(window, bg="orange", text="Wifi info added for " + wifi_name_field.get() + " added!  Restart to connect!").grid(column=0, row=4)
 
 wifi_lbl = Label(window, text="Add Wifi Info:")
 
