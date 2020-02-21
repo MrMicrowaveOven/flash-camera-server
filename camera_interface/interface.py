@@ -91,15 +91,16 @@ programmer_mode_warning_label = Label(window, text="(please don't enter Programm
 
 welcome_lbl.place(relx = 0.5, rely = 0.2, anchor = CENTER)
 current_wifis_lbl.place(relx = 0.5, rely = 0.225, anchor = CENTER)
+
 wifi_lbl.place(relx = 0.5, rely = 0.4, anchor = CENTER)
 wifi_name_lbl.place(relx = 0.5, rely = 0.425, anchor = CENTER)
 wifi_name_field.place(relx = 0.5, rely = 0.45, anchor = CENTER)
 wifi_password_lbl.place(relx = 0.5, rely = 0.475, anchor = CENTER)
 wifi_password_field.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 add_wifi_button.place(relx = 0.5, rely = 0.53, anchor = CENTER)
-reset_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
 update_button.place(relx = 0.5, rely = 0.6, anchor = CENTER)
 camera_preview_button.place(relx = 0.5, rely = 0.65, anchor = CENTER)
+reset_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
 programmer_mode_button.place(relx = 0.5, rely = 0.75, anchor = CENTER)
 programmer_mode_warning_label.place(relx = 0.5, rely = 0.775, anchor = CENTER)
 
