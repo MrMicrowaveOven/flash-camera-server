@@ -40,7 +40,7 @@ def update_flash_cam_repo():
 		pull_response_label = Label(window, bg="orange", text=pull_response)
 	else:
 		pull_response_label = Label(window, bg="orange", text="Updated!  You'll have the most recent version after you restart.")
-	pull_response_label.grid(column=BASE_COLUMN, row=520)
+	pull_response_label.place(relx = 0.5, rely = 0.625, anchor = CENTER)
 
 def confirm_reset():
 	if tkinter.messagebox.askokcancel("Reset Camera?","Are you sure you would like to reset your camera?"):
@@ -61,7 +61,8 @@ def preview_camera():
 
 def update_wifi_info():
 	wifi_info_module.update_wifi_info(wifi_name_field.get(), wifi_password_field.get())
-	Label(window, bg="orange", text="Wifi info added for " + wifi_name_field.get() + " added!  Restart to connect!").grid(column=0, row=4)
+	wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info added for " + wifi_name_field.get() + " added!  Restart to connect!")
+	wifi_confirmation_lbl.place(relx = 0.5, rely = 0.56, anchor = CENTER)
 
 wifi_lbl = Label(window, text="Add Wifi Info:")
 
