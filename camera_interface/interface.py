@@ -5,6 +5,9 @@ import git
 
 import wifi_info_module
 
+from picamera import PiCamera
+import time
+
 BASE_COLUMN = 0
 
 window = Tk()
@@ -48,8 +51,8 @@ def open_removal_buttons():
 
 # Button(window, text="Remove a wifi network", command=open_removal_buttons).grid(column=0, row=400)
 
-lbl = Label(window, text="Would you like to update?  If so, click here: ")
-lbl.grid(column=BASE_COLUMN, row=500)
+# lbl = Label(window, text="Would you like to update?  If so, click here: ")
+# lbl.grid(column=BASE_COLUMN, row=500)
 
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
@@ -68,8 +71,8 @@ def update_flash_cam_repo():
 		pull_response_label = Label(window, bg="orange", text="Updated!  You'll have the most recent version after you restart.")
 	pull_response_label.grid(column=BASE_COLUMN, row=520)
 
-update_button = Button(window, text="Update", command=update_flash_cam_repo)
-update_button.grid(column=BASE_COLUMN+1, row=500)
+update_button = Button(window, text="Update Device", command=update_flash_cam_repo)
+update_button.grid(column=BASE_COLUMN, row=500)
 
 def confirm_reset():
 	if tkinter.messagebox.askokcancel("Reset Camera?","Are you sure you would like to reset your camera?"):
@@ -82,11 +85,20 @@ def reset_camera():
 	output = process.communicate()[0]
 	print(output)
 
+def preview_camera():
+	camera = PiCamera()
+	camera.start_preview()
+	time.sleep(10)
+	camera.close()
+
 reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
-reset_button.grid(column=BASE_COLUMN+2, row=1000)
+reset_button.grid(column=BASE_COLUMN, row=1000)
+
+camera_preview_button = Button(window, text="Preview Camera for 10 seconds", command=preview_camera)
+camera_preview_button.grid(column=BASE_COLUMN, row=1500)
 
 quit_button = Button(window, text="Programmer Mode", command=window.destroy)
-quit_button.grid(column=BASE_COLUMN, row=1500)
-Label(window, text="(please don't click this unless you really know what you're doing)").grid(column=0, row=1600)
+quit_button.grid(column=BASE_COLUMN, row=2500)
+Label(window, text="(please don't enter Programmer Mode unless you really know what you're doing)").grid(column=0, row=2600)
 
 window.mainloop()
