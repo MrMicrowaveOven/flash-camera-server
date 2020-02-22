@@ -65,7 +65,7 @@ def remove_network(network_name):
     for i in range(len(file_list)):
         line = file_list[i]
         if 'ssid="' + network_name + '"' in line:
-            section_to_delete = i - 1
+            section_to_delete = i - 2
             break
     if section_to_delete:
         for i in range(6):
