@@ -66,7 +66,7 @@ def update_flash_cam_repo():
 	except Exception as e:
 		print(e)
 		pull_response_label = Label(window, bg="orange", text="There was an issue updating.  Please check your internet connection and try again.")
-		pull_response_label.grid(column=BASE_COLUMN, row=520)
+		pull_response_label.place(relx = 0.5, rely = 0.625, anchor = CENTER)
 		return()
 	print(pull_response)
 	pull_response_label = ''
