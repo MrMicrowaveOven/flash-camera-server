@@ -52,6 +52,7 @@ def open_removal_buttons():
 
 def hide_removal_buttons():
 	print('==========')
+	global network_removal_buttons
 	print(network_removal_buttons)
 	for button in network_removal_buttons:
 		button.pack_forget()
