@@ -20,6 +20,7 @@ welcome_lbl = Label(window, text="Hello!  Welcome to the Administrative Control 
 network_list_labels = []
 network_removal_buttons = []
 
+
 def remove_this_network(network_name):
 	if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + network_name + " from your list of known networks?"):
 		print("REMOVING " + network_name)
@@ -28,6 +29,8 @@ def remove_this_network(network_name):
 		hide_removal_buttons()
 
 def update_network_list():
+	print('--------')
+	print(network_removal_buttons)
 	hide_removal_buttons()
 	for label in network_list_labels:
 		label.pack_forget()
