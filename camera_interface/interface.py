@@ -21,11 +21,37 @@ def remove_this_network(network_name):
 	if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + network_name + " from your list of known networks?"):
 		print("REMOVING " + network_name)
 		wifi_info_module.remove_network(network_name)
+		update_network_list()
+		hide_removal_buttons()
 
-def open_removal_buttons():
+network_list_labels = []
+
+def update_network_list():
+	hide_removal_buttons()
+	for label in network_list_labels:
+		label.pack_forget()
+	network_list_labels = []
+	wifi_networks = wifi_info_module.get_wifi_list()
 	for i in range(len(wifi_networks)):
 		y_coord = 0.25 + (0.025 * i)
-		Button(window, text="X", command= lambda i=i: remove_this_network(wifi_networks[i])).place(relx = 0.3, rely = y_coord, anchor = CENTER)
+		wifi_label = Label(window, text=wifi_networks[i])
+		wifi_label.place(relx = 0.5, rely = y_coord, anchor = CENTER)
+		network_list_labels.append(wifi_label)
+
+network_removal_buttons = []
+
+def open_removal_buttons():
+	network_removal_buttons = []
+	for i in range(len(wifi_networks)):
+		y_coord = 0.25 + (0.025 * i)
+		removal_button = Button(window, text="X", command= lambda i=i: remove_this_network(wifi_networks[i]))
+		removal_button.place(relx = 0.3, rely = y_coord, anchor = CENTER)
+		network_removal_buttons.append(removal_button)
+
+def hide_removal_buttons():
+	for button in network_removal_buttons:
+		button.pack_forget()
+	network_removal_buttons = []
 
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
@@ -79,10 +105,7 @@ show_wifi_remove_buttons_button = Button(window, text="Remove wifi info", comman
 
 current_wifis_lbl = Label(window, text="Current saved wifi networks:")
 
-wifi_networks = wifi_info_module.get_wifi_list()
-for i in range(len(wifi_networks)):
-	y_coord = 0.25 + (0.025 * i)
-	Label(window, text=wifi_networks[i]).place(relx = 0.5, rely = y_coord, anchor = CENTER)
+update_network_list()
 
 reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
 
