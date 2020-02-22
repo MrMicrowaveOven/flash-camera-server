@@ -44,6 +44,7 @@ def update_network_list():
 
 def open_removal_buttons():
 	network_removal_buttons = []
+	global wifi_networks
 	for i in range(len(wifi_networks)):
 		y_coord = 0.25 + (0.025 * i)
 		removal_button = Button(window, text="X", command= lambda i=i: remove_this_network(wifi_networks[i]))
