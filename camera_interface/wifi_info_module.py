@@ -71,5 +71,3 @@ def remove_network(network_name):
         for i in range(6):
             del(file_list[section_to_delete])
         open(WIFI_DOC_LOCATION, 'w').write('\n'.join(file_list))
-
-remove_network('')
