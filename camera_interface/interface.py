@@ -18,7 +18,7 @@ window.attributes('-fullscreen', True)
 welcome_lbl = Label(window, text="Hello!  Welcome to the Administrative Control Panel.", font=(20))
 
 network_list_labels = []
-network_removal_buttons = []
+global network_removal_buttons = []
 
 
 def remove_this_network(network_name):
@@ -52,7 +52,7 @@ def open_removal_buttons():
 
 def hide_removal_buttons():
 	print('==========')
-	global network_removal_buttons
+	# global network_removal_buttons
 	print(network_removal_buttons)
 	for button in network_removal_buttons:
 		button.pack_forget()
