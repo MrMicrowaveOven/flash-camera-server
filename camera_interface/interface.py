@@ -27,7 +27,6 @@ def remove_this_network(network_name):
 		print("REMOVING " + network_name)
 		wifi_info_module.remove_network(network_name)
 		update_network_list()
-		# hide_removal_buttons()
 
 def update_network_list():
 	hide_removal_buttons()
@@ -45,13 +44,13 @@ def update_network_list():
 		wifi_label.place(relx = 0.5, rely = y_coord, anchor = CENTER)
 		network_list_labels.append(wifi_label)
 
-def open_removal_buttons():
+def show_removal_buttons():
 	network_removal_buttons = []
 	global wifi_networks
 	for i in range(len(wifi_networks)):
 		y_coord = 0.25 + (0.025 * i)
 		removal_button = Button(window, text="X", command= lambda i=i: remove_this_network(wifi_networks[i]))
-		removal_button.place(relx = 0.3, rely = y_coord, anchor = CENTER)
+		removal_button.place(relx = 0.4, rely = y_coord, anchor = CENTER)
 		network_removal_buttons.append(removal_button)
 
 def hide_removal_buttons():
@@ -108,7 +107,7 @@ wifi_password_lbl = Label(window, text="Wifi Password")
 wifi_password_field = Entry(window)
 
 add_wifi_button = Button(window, text="Add wifi info", command=update_wifi_info)
-show_wifi_remove_buttons_button = Button(window, text="Remove wifi info", command=open_removal_buttons)
+show_wifi_remove_buttons_button = Button(window, text="Remove wifi info", command=show_removal_buttons)
 
 current_wifis_lbl = Label(window, text="Current saved wifi networks:")
 
