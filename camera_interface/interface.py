@@ -26,10 +26,10 @@ def remove_this_network(network_name):
 	if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + network_name + " from your list of known networks?"):
 		print("REMOVING " + network_name)
 		wifi_info_module.remove_network(network_name)
-		update_network_list()
+		# update_network_list()
 
 def update_network_list():
-	hide_removal_buttons()
+	# hide_removal_buttons()
 	global network_removal_buttons
 	global network_list_labels
 	global wifi_networks
