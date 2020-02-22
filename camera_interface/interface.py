@@ -20,10 +20,12 @@ welcome_lbl = Label(window, text="Hello!  Welcome to the Administrative Control 
 def remove_this_network(i):
 	if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + wifi_networks[i] + " from your list of known networks?"):
 		print("REMOVING " + wifi_networks[i])
+		wifi_info_module.remove_network(i)
 
 def open_removal_buttons():
 	for i in range(len(wifi_networks)):
-		Button(window, text="X", command= lambda i=i: remove_this_network(i)).grid(column=BASE_COLUMN+1, row=(101 + i))
+		y_coord = 0.25 + (0.025 * i)
+		Button(window, text="X", command= lambda i=i: remove_this_network(wifi_networks[i])).place(relx = 0.3, rely = y_coord, anchor = CENTER)
 
 def update_flash_cam_repo():
 	g = git.cmd.Git('/home/pi/Desktop/flash-camera-server/')
@@ -61,7 +63,7 @@ def preview_camera():
 
 def update_wifi_info():
 	wifi_info_module.update_wifi_info(wifi_name_field.get(), wifi_password_field.get())
-	wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info added for " + wifi_name_field.get() + " added!  Restart to connect!")
+	wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info for " + wifi_name_field.get() + " added!  Restart to connect!")
 	wifi_confirmation_lbl.place(relx = 0.5, rely = 0.56, anchor = CENTER)
 
 wifi_lbl = Label(window, text="Add Wifi Info:")
@@ -73,6 +75,7 @@ wifi_password_lbl = Label(window, text="Wifi Password")
 wifi_password_field = Entry(window)
 
 add_wifi_button = Button(window, text="Add wifi info", command=update_wifi_info)
+show_wifi_remove_buttons_button = Button(window, text="Remove wifi info", command=open_removal_buttons)
 
 current_wifis_lbl = Label(window, text="Current saved wifi networks:")
 
@@ -98,7 +101,8 @@ wifi_name_lbl.place(relx = 0.5, rely = 0.425, anchor = CENTER)
 wifi_name_field.place(relx = 0.5, rely = 0.45, anchor = CENTER)
 wifi_password_lbl.place(relx = 0.5, rely = 0.475, anchor = CENTER)
 wifi_password_field.place(relx = 0.5, rely = 0.5, anchor = CENTER)
-add_wifi_button.place(relx = 0.5, rely = 0.53, anchor = CENTER)
+add_wifi_button.place(relx = 0.4, rely = 0.53, anchor = CENTER)
+show_wifi_remove_buttons_button.place(relx = 0.6, rely = 0.53, anchor = CENTER)
 update_button.place(relx = 0.5, rely = 0.6, anchor = CENTER)
 camera_preview_button.place(relx = 0.5, rely = 0.65, anchor = CENTER)
 reset_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
