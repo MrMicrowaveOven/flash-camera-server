@@ -20,6 +20,7 @@ welcome_lbl = Label(window, text="Hello!  Welcome to the Administrative Control 
 network_list_labels = []
 network_removal_buttons = []
 
+wifi_networks = wifi_info_module.get_wifi_list()
 
 def remove_this_network(network_name):
 	if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + network_name + " from your list of known networks?"):
@@ -35,7 +36,7 @@ def update_network_list():
 	for label in network_list_labels:
 		label.pack_forget()
 	network_list_labels = []
-	wifi_networks = wifi_info_module.get_wifi_list()
+
 	for i in range(len(wifi_networks)):
 		y_coord = 0.25 + (0.025 * i)
 		wifi_label = Label(window, text=wifi_networks[i])
