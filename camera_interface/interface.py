@@ -51,6 +51,7 @@ def open_removal_buttons():
 		network_removal_buttons.append(removal_button)
 
 def hide_removal_buttons():
+	print(network_removal_buttons)
 	for button in network_removal_buttons:
 		button.pack_forget()
 	network_removal_buttons = []
