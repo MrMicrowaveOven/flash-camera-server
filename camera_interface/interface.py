@@ -17,14 +17,15 @@ window.title("Admin Control Panel")
 window.attributes('-fullscreen', True)
 welcome_lbl = Label(window, text="Hello!  Welcome to the Administrative Control Panel.", font=(20))
 
+network_list_labels = []
+network_removal_buttons = []
+
 def remove_this_network(network_name):
 	if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + network_name + " from your list of known networks?"):
 		print("REMOVING " + network_name)
 		wifi_info_module.remove_network(network_name)
 		update_network_list()
 		hide_removal_buttons()
-
-network_list_labels = []
 
 def update_network_list():
 	hide_removal_buttons()
@@ -37,8 +38,6 @@ def update_network_list():
 		wifi_label = Label(window, text=wifi_networks[i])
 		wifi_label.place(relx = 0.5, rely = y_coord, anchor = CENTER)
 		network_list_labels.append(wifi_label)
-
-network_removal_buttons = []
 
 def open_removal_buttons():
 	network_removal_buttons = []
