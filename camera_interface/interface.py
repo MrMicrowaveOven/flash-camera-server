@@ -29,9 +29,9 @@ def remove_this_network(network_name):
 		hide_removal_buttons()
 
 def update_network_list():
-	print('--------')
-	print(network_removal_buttons)
 	hide_removal_buttons()
+	global network_removal_buttons
+	global network_list_labels
 	for label in network_list_labels:
 		label.pack_forget()
 	network_list_labels = []
@@ -51,9 +51,7 @@ def open_removal_buttons():
 		network_removal_buttons.append(removal_button)
 
 def hide_removal_buttons():
-	print('==========')
 	global network_removal_buttons
-	# print(global network_removal_buttons )
 	for button in network_removal_buttons:
 		button.pack_forget()
 	network_removal_buttons = []
