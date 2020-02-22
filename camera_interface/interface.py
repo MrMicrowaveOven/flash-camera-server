@@ -27,12 +27,14 @@ def remove_this_network(network_name):
 		print("REMOVING " + network_name)
 		wifi_info_module.remove_network(network_name)
 		update_network_list()
-		hide_removal_buttons()
+		# hide_removal_buttons()
 
 def update_network_list():
 	hide_removal_buttons()
 	global network_removal_buttons
 	global network_list_labels
+	global wifi_networks
+	wifi_networks = wifi_info_module.get_wifi_list()
 	for label in network_list_labels:
 		label.pack_forget()
 	network_list_labels = []
