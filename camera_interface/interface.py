@@ -77,6 +77,10 @@ def launch_interface():
 		wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info for " + wifi_name_field.get() + " added!  Restart to connect!")
 		wifi_confirmation_lbl.place(relx = 0.5, rely = 0.56, anchor = CENTER)
 
+	def refresh_interface():
+		window.destroy()
+		launch_interface()
+
 	wifi_lbl = Label(window, text="Add Wifi Info:")
 
 	wifi_name_lbl = Label(window, text="Wifi Name")
@@ -101,6 +105,8 @@ def launch_interface():
 	programmer_mode_button = Button(window, text="Programmer Mode", command=window.destroy)
 	programmer_mode_warning_label = Label(window, text="(please don't enter Programmer Mode unless you really know what you're doing)")
 
+	refresh_button = Button(window, text="Refresh Interface", command=refresh_interface)
+
 	welcome_lbl.place(relx = 0.5, rely = 0.2, anchor = CENTER)
 	current_wifis_lbl.place(relx = 0.5, rely = 0.225, anchor = CENTER)
 
@@ -116,6 +122,7 @@ def launch_interface():
 	reset_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
 	programmer_mode_button.place(relx = 0.5, rely = 0.75, anchor = CENTER)
 	programmer_mode_warning_label.place(relx = 0.5, rely = 0.775, anchor = CENTER)
+	refresh_button.place(relx = 0.7, rely = 0.4, anchor = CENTER)
 
 	window.mainloop()
 
