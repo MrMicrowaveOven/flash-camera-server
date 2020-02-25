@@ -8,6 +8,9 @@ def launch_interface():
 	from picamera import PiCamera
 	import time
 
+	import requests
+	import uuid
+
 	BASE_COLUMN = 0
 
 	window = Tk()
@@ -82,6 +85,31 @@ def launch_interface():
 		window.destroy()
 		launch_interface()
 
+	def test_device():
+		report = ''
+		report += 'Connection Status: '
+		try:
+			requests.get('https://google.com')
+			report += 'Online'
+		except:
+			report += 'Not Online'
+
+		report += '\n'
+		report += 'Camera Sending: '
+
+		try:
+			mothership_url = 'https://flash-sms-server.herokuapp.com'
+			camera_url = mothership_url + '/cameras'
+			mac_address = hex(uuid.getnode())
+			camera_url_with_params = camera_url + '?mac_address=' + mac_address + '&test=true'
+			requests.get(camera_url_with_params)
+			report += 'Yes'
+		except:
+			report += 'No'
+
+		tkinter.messagebox.showinfo('Status Report', report)
+
+
 	add_wifi_button = Button(window, text="Add Network to the list", state=DISABLED, command=update_wifi_info)
 
 	wifi_lbl = Label(window, text="Add Wifi Info:")
@@ -107,6 +135,8 @@ def launch_interface():
 
 	show_network_list()
 
+	test_button = Button(window, text="Test Flash-Cam", command=test_device)
+
 	reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
 
 	update_button = Button(window, text="Update Flash-Cam Software via Network", command=update_flash_cam_repo)
@@ -128,11 +158,12 @@ def launch_interface():
 	wifi_password_field.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 	add_wifi_button.place(relx = 0.4, rely = 0.53, anchor = CENTER)
 	show_wifi_remove_buttons_button.place(relx = 0.6, rely = 0.53, anchor = CENTER)
-	update_button.place(relx = 0.5, rely = 0.6, anchor = CENTER)
-	camera_preview_button.place(relx = 0.5, rely = 0.65, anchor = CENTER)
-	reset_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
-	programmer_mode_button.place(relx = 0.5, rely = 0.75, anchor = CENTER)
-	programmer_mode_warning_label.place(relx = 0.5, rely = 0.775, anchor = CENTER)
+	test_button.place(relx=0.5, rely = 0.6, ancho = CENTER)
+	update_button.place(relx = 0.5, rely = 0.65, anchor = CENTER)
+	camera_preview_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
+	reset_button.place(relx = 0.5, rely = 0.75, anchor = CENTER)
+	programmer_mode_button.place(relx = 0.5, rely = 0.8, anchor = CENTER)
+	programmer_mode_warning_label.place(relx = 0.5, rely = 0.825, anchor = CENTER)
 	refresh_button.place(relx = 0.7, rely = 0.4, anchor = CENTER)
 
 	window.mainloop()
