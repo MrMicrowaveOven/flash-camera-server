@@ -96,19 +96,30 @@ def launch_interface():
 
 		report += '\n'
 		report += 'Camera Sending: '
+		response = None
 
 		try:
 			mothership_url = 'https://flash-sms-server.herokuapp.com'
+
 			camera_url = mothership_url + '/cameras'
 			mac_address = hex(uuid.getnode())
 			camera_url_with_params = camera_url + '?mac_address=' + mac_address + '&test=true'
-			requests.get(camera_url_with_params)
+			response = requests.get(camera_url_with_params)
 			report += 'Yes'
 		except:
 			report += 'No'
 
+		if response:
+			report += '\n'
+			report += 'Flash-Cam Verified: '
+			try:
+				if response.json()['mac_address']:
+					report += 'Yes'
+				else:
+					report += 'No'
+			except:
+				report += 'Error'
 		tkinter.messagebox.showinfo('Status Report', report)
-
 
 	add_wifi_button = Button(window, text="Add Network to the list", state=DISABLED, command=update_wifi_info)
 
