@@ -75,7 +75,7 @@ def launch_interface():
 
 	def update_wifi_info():
 		wifi_info_module.update_wifi_info(wifi_name_field.get(), wifi_password_field.get())
-		wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info for `" + wifi_name_field.get() + "` added!  I suggest you Restart your Flash-Cam before testing.")
+		wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info for `" + wifi_name_field.get() + "` added!  You'll see it when you Refresh Interface.  I also suggest you Reset Flash-Cam before testing.")
 		wifi_confirmation_lbl.place(relx = 0.5, rely = 0.56, anchor = CENTER)
 
 	def refresh_interface():
