@@ -20,11 +20,12 @@ def launch_interface():
 	wifi_networks = wifi_info_module.get_wifi_list()
 
 	def remove_this_network(network_name):
-		if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network " + network_name + " from your list of known networks?"):
+		if tkinter.messagebox.askokcancel("Confirm Network Deletion","Would you like to remove the network `" + network_name + "` from your list of known networks?"):
 			print("REMOVING " + network_name)
 			wifi_info_module.remove_network(network_name)
+			refresh_interface()
 
-	def update_network_list():
+	def show_network_list():
 		wifi_networks = wifi_info_module.get_wifi_list()
 
 		for i in range(len(wifi_networks)):
@@ -52,7 +53,7 @@ def launch_interface():
 		if pull_response == "Already up-to-date.":
 			pull_response_label = Label(window, bg="orange", text=pull_response)
 		else:
-			pull_response_label = Label(window, bg="orange", text="Updated!  You'll have the most recent version after you restart.")
+			pull_response_label = Label(window, bg="orange", text="Updated!  You'll have the most recent version after you Refresh Interface.")
 		pull_response_label.place(relx = 0.5, rely = 0.625, anchor = CENTER)
 
 	def confirm_reset():
@@ -74,7 +75,7 @@ def launch_interface():
 
 	def update_wifi_info():
 		wifi_info_module.update_wifi_info(wifi_name_field.get(), wifi_password_field.get())
-		wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info for " + wifi_name_field.get() + " added!  Restart to connect!")
+		wifi_confirmation_lbl = Label(window, bg="orange", text="Wifi info for `" + wifi_name_field.get() + "` added!  I suggest you Restart your Flash-Cam before testing.")
 		wifi_confirmation_lbl.place(relx = 0.5, rely = 0.56, anchor = CENTER)
 
 	def refresh_interface():
@@ -94,7 +95,7 @@ def launch_interface():
 
 	current_wifis_lbl = Label(window, text="Current saved wifi networks:")
 
-	update_network_list()
+	show_network_list()
 
 	reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
 
