@@ -109,7 +109,7 @@ def launch_interface():
 
 	reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
 
-	update_button = Button(window, text="Update Device via Network", command=update_flash_cam_repo)
+	update_button = Button(window, text="Update Flash-Cam Software via Network", command=update_flash_cam_repo)
 
 	camera_preview_button = Button(window, text="Preview Camera for 10 seconds", command=preview_camera)
 
