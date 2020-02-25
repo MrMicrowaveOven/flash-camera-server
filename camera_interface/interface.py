@@ -121,6 +121,9 @@ def launch_interface():
 			except:
 				report += 'Error'
 		tkinter.messagebox.showinfo('Status Report', report)
+	# I need this argument for stupid reasons.
+	def enter_programmer_mode(self):
+		window.destroy()
 
 	add_wifi_button = Button(window, text="Add Network to the list", state=DISABLED, command=update_wifi_info)
 
@@ -155,8 +158,10 @@ def launch_interface():
 
 	camera_preview_button = Button(window, text="Preview Camera for 10 seconds", command=preview_camera)
 
-	programmer_mode_button = Button(window, text="Programmer Mode", command=window.destroy)
-	programmer_mode_warning_label = Label(window, text="(please don't enter Programmer Mode unless you really know what you're doing)")
+	# programmer_mode_button = Button(window, text="Programmer Mode", command=window.destroy)
+	# programmer_mode_warning_label = Label(window, text="(please don't enter Programmer Mode unless you really know what you're doing)")
+	programmer_mode_secret_button = Label(window, text="                                              ")
+	programmer_mode_secret_button.bind("<Button-1>", enter_programmer_mode)
 
 	refresh_button = Button(window, text="Refresh Interface", command=refresh_interface)
 
@@ -174,8 +179,9 @@ def launch_interface():
 	update_button.place(relx = 0.5, rely = 0.65, anchor = CENTER)
 	camera_preview_button.place(relx = 0.5, rely = 0.7, anchor = CENTER)
 	reset_button.place(relx = 0.5, rely = 0.75, anchor = CENTER)
-	programmer_mode_button.place(relx = 0.5, rely = 0.8, anchor = CENTER)
-	programmer_mode_warning_label.place(relx = 0.5, rely = 0.825, anchor = CENTER)
+	# programmer_mode_button.place(relx = 0.5, rely = 0.8, anchor = CENTER)
+	# programmer_mode_warning_label.place(relx = 0.5, rely = 0.825, anchor = CENTER)
+	programmer_mode_secret_button.place(relx = 0.5, rely = 0.9, anchor = CENTER)
 	refresh_button.place(relx = 0.7, rely = 0.4, anchor = CENTER)
 
 	window.mainloop()
