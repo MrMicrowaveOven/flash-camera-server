@@ -117,6 +117,7 @@ def launch_interface():
 					report += 'Yes'
 				else:
 					report += 'No'
+					report += '\nYour Flash-Cam will be verified by personnel shortly.'
 			except:
 				report += 'Error'
 		tkinter.messagebox.showinfo('Status Report', report)
