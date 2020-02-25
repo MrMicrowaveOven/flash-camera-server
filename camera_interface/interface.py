@@ -82,16 +82,26 @@ def launch_interface():
 		window.destroy()
 		launch_interface()
 
+	add_wifi_button = Button(window, text="Add Network to the list", state=DISABLED, command=update_wifi_info)
+
 	wifi_lbl = Label(window, text="Add Wifi Info:")
 
+	def wifi_name_callback(wifi_name):
+		field_entry = wifi_name.get()
+		if field_entry == '':
+			add_wifi_button['state'] = 'disabled'
+		else:
+			add_wifi_button['state'] = 'normal'
+
 	wifi_name_lbl = Label(window, text="Wifi Name")
-	wifi_name_field = Entry(window)
+	wifi_name = StringVar()
+	wifi_name.trace("w", lambda name, index, mode, wifi_name=wifi_name: wifi_name_callback(wifi_name))
+	wifi_name_field = Entry(window, textvariable=wifi_name)
 
 	wifi_password_lbl = Label(window, text="Wifi Password")
 	wifi_password_field = Entry(window)
 
-	add_wifi_button = Button(window, text="Add wifi info", command=update_wifi_info)
-	show_wifi_remove_buttons_button = Button(window, text="Remove wifi info", command=show_removal_buttons)
+	show_wifi_remove_buttons_button = Button(window, text="Remove a Network from the list", command=show_removal_buttons)
 
 	current_wifis_lbl = Label(window, text="Current saved wifi networks:")
 
