@@ -144,3 +144,7 @@ hdmi_mode=16
 May need to use `sudo mv`. -->
 
 <!-- https://scribles.net/customizing-boot-up-screen-on-raspberry-pi/ -->
+
+
+TODO:
+Have the fully-configured Flash-Cam in a folder on my laptop.  Copy it to another SD card, and see if it makes a camera already set up.  No setup necessary!

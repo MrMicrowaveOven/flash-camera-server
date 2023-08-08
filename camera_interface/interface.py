@@ -152,7 +152,7 @@ def launch_interface():
 
 	test_button = Button(window, text="Test Flash-Cam", command=test_device)
 
-	reset_button = Button(window, text="Reset Flash-Cam", command=confirm_reset)
+	reset_button = Button(window, text="Restart Flash-Cam", command=confirm_reset)
 
 	update_button = Button(window, text="Update Flash-Cam Software via Network", command=update_flash_cam_repo)
 
